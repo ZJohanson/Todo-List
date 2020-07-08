@@ -1,0 +1,41 @@
+<mat-card class="card-style" fxLayout="column" fxLayoutGap="5px">
+  <div fxLayout="column" fxLayoutAlign="start start">
+    <h2>TODO Lists</h2>
+    <span>A place to store your todos</span>
+  </div>
+  <div class="input-field">
+    <input type="text" placeholder="Filter" />
+  </div>
+  <div fxLayout="column" class="scroller">
+    <ol>
+      <li *ngFor="let todo of todoList">
+        <div fxLayoutAlign="space-between center">
+          <div
+            fxLayout="row"
+            fxLayoutAlign="start center"
+            fxLayoutGap="5px"
+            class="task-container"
+          >
+            <button class="outline-button" *ngIf="!todo.completed">
+              Complete
+            </button>
+            <span [ngClass]="{ 'strike-through': todo.completed }">{{
+              todo.task
+            }}</span>
+          </div>
+          <div>
+            <mat-icon
+              svgIcon="close"
+              class="cursor-pointer close-icon"
+            ></mat-icon>
+          </div>
+        </div>
+      </li>
+    </ol>
+    <span *ngIf="todoList.length == 0">Nothing to do!</span>
+  </div>
+  <div class="input-field">
+    <input type="text" placeholder="Add to list" />
+  </div>
+  <button mat-flat-button class="btn">Add</button>
+</mat-card>
